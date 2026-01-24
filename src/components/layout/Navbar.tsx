@@ -33,77 +33,80 @@ export function Navbar() {
     const toggleMenu = () => setIsOpen(!isOpen);
 
     return (
-        <header className="sticky top-0 z-50 w-full border-b border-gray-200 bg-white/95 backdrop-blur-sm lg:border-none">
-            <div className="bg-primary py-2 text-white hidden lg:block">
-                <Container className="flex items-center justify-between text-sm font-medium">
-                    <div>Manufacturing Excellence Since {COMPANY_INFO.founded}</div>
-                    <div className="flex items-center gap-6">
-                        <a href={`tel:${COMPANY_INFO.phone.value}`} className="flex items-center gap-2 hover:text-secondary-accent transition-colors">
-                            <Phone className="h-4 w-4" />
-                            <span>{COMPANY_INFO.phone.display}</span>
-                        </a>
-                        <div className="h-4 w-[1px] bg-white/20" />
-                        <a href={`mailto:${COMPANY_INFO.email}`} className="hover:text-secondary-accent transition-colors">
-                            {COMPANY_INFO.email}
-                        </a>
-                    </div>
-                </Container>
-            </div>
-
-            <Container className="flex h-20 items-center justify-between">
-                {/* Logo */}
-                <Link href="/" className="flex items-center gap-2 z-50 relative">
-                    <Image
-                        src="/Images/Logo.png"
-                        alt="Mas Metal Craft & Automation"
-                        width={180}
-                        height={60}
-                        priority
-                        className="h-12 w-auto"
-                    />
-                </Link>
-
-                {/* Desktop Navigation */}
-                <nav className="hidden lg:flex items-center gap-8">
-                    {NAV_LINKS.map((link) => (
-                        <Link
-                            key={link.href}
-                            href={link.href}
-                            className={cn(
-                                "text-sm font-medium transition-colors hover:text-accent",
-                                pathname === link.href ? "text-accent" : "text-text-primary"
-                            )}
-                        >
-                            {link.label}
-                        </Link>
-                    ))}
-                </nav>
-
-                {/* Desktop CTA */}
-                <div className="hidden lg:flex items-center gap-4">
-                    <Button variant="outline" size="sm" asChild className="hidden xl:flex">
-                        <a href={`https://wa.me/${COMPANY_INFO.whatsapp.replace("+", "")}`}>
-                            <WhatsAppIcon className="mr-2 h-4 w-4" />
-                            WhatsApp
-                        </a>
-                    </Button>
-                    <Button variant="accent" size="sm" asChild>
-                        <a href={`tel:${COMPANY_INFO.phone.value}`}>
-                            <Phone className="mr-2 h-4 w-4" />
-                            Call Now
-                        </a>
-                    </Button>
+        <>
+            <header className="sticky top-0 z-50 w-full border-b border-gray-200 bg-white/95 backdrop-blur-sm lg:border-none">
+                <div className="bg-primary py-2 text-white hidden lg:block">
+                    <Container className="flex items-center justify-between text-sm font-medium">
+                        <div>Manufacturing Excellence Since {COMPANY_INFO.founded}</div>
+                        <div className="flex items-center gap-6">
+                            <a href={`tel:${COMPANY_INFO.phone.value}`} className="flex items-center gap-2 hover:text-secondary-accent transition-colors">
+                                <Phone className="h-4 w-4" />
+                                <span>{COMPANY_INFO.phone.display}</span>
+                            </a>
+                            <div className="h-4 w-[1px] bg-white/20" />
+                            <a href={`mailto:${COMPANY_INFO.email}`} className="hover:text-secondary-accent transition-colors">
+                                {COMPANY_INFO.email}
+                            </a>
+                        </div>
+                    </Container>
                 </div>
 
-                {/* Mobile Menu Toggle */}
-                <button
-                    onClick={toggleMenu}
-                    className="relative z-50 flex h-10 w-10 items-center justify-center rounded-md p-2 text-primary hover:bg-surface lg:hidden"
-                    aria-label="Toggle Menu"
-                >
-                    {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-                </button>
-            </Container>
+                <Container className="flex h-20 items-center justify-between">
+                    {/* Logo */}
+                    <Link href="/" className="flex items-center gap-2 z-50 relative">
+                        <Image
+                            src="/Images/Logo.png"
+                            alt="Mas Metal Craft & Automation"
+                            width={180}
+                            height={60}
+                            priority
+                            className="h-12 w-auto"
+                        />
+                    </Link>
+
+                    {/* Desktop Navigation */}
+                    <nav className="hidden lg:flex items-center gap-8">
+                        {NAV_LINKS.map((link) => (
+                            <Link
+                                key={link.href}
+                                href={link.href}
+                                className={cn(
+                                    "text-sm font-medium transition-colors hover:text-accent",
+                                    pathname === link.href ? "text-accent" : "text-text-primary"
+                                )}
+                            >
+                                {link.label}
+                            </Link>
+                        ))}
+                    </nav>
+
+                    {/* Desktop CTA */}
+                    <div className="hidden lg:flex items-center gap-4">
+                        <Button variant="outline" size="sm" asChild className="hidden xl:flex">
+                            <a href={`https://wa.me/${COMPANY_INFO.whatsapp.replace("+", "")}`}>
+                                <WhatsAppIcon className="mr-2 h-4 w-4" />
+                                WhatsApp
+                            </a>
+                        </Button>
+                        <Button variant="accent" size="sm" asChild>
+                            <a href={`tel:${COMPANY_INFO.phone.value}`}>
+                                <Phone className="mr-2 h-4 w-4" />
+                                Call Now
+                            </a>
+                        </Button>
+                    </div>
+
+                    {/* Mobile Menu Toggle */}
+                    <button
+                        onClick={toggleMenu}
+                        className="relative z-50 flex h-10 w-10 items-center justify-center rounded-md p-2 text-primary hover:bg-surface lg:hidden"
+                        aria-label="Toggle Menu"
+                    >
+                        {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+                    </button>
+                </Container>
+
+            </header>
 
             {/* Mobile Navigation Overlay */}
             <AnimatePresence>
@@ -153,6 +156,6 @@ export function Navbar() {
                     </motion.div>
                 )}
             </AnimatePresence>
-        </header>
+        </>
     );
 }
